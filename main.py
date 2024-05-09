@@ -62,7 +62,7 @@ pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
 #os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf \"transpose=1\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 
-os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf scale=720:-2 -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
+os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf scale=720:-1 -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 
 #ffmpeg -i input.mp4 -vf "crop=in_w:in_h*(9/16), pad=in_w:in_h*(16/9):(ow-iw)/2:(oh-ih)/2" output.mp4
