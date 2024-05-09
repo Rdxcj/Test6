@@ -59,7 +59,7 @@ pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
 #print(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:0]split[main][back];[back]scale=1280:720[scale];[scale]drawbox=x=0:y=0:w=1280:h=720:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1280,-1)':'if(gt(a,16/9),-1,720)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 
-os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf transpose=1 -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
+os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf transpose=1 -b:v 7000k -maxrate 3000k -bufsize 6000k -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 
 #os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf scale=ih*4/3:ih,setsar=1 -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
