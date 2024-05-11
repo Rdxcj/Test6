@@ -66,3 +66,4 @@ os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:13 -vf transpose=1 -tune zerolatency
 
 
 #ffmpeg -i input.mp4 -vf "crop=in_w:in_h*(9/16), pad=in_w:in_h*(16/9):(ow-iw)/2:(oh-ih)/2" output.mp4
+ # dhdjdidu
