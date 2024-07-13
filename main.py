@@ -35,7 +35,7 @@ json_data = {
             'utcOffsetMinutes': 0,
         },
     },
-    'videoId': 'ziAab6sVCGs',
+    'videoId': 'k5yYu12zZYI',
     'playbackContext': {
         'contentPlaybackContext': {
             'html5Preference': 'HTML5_PREF_WANTS',
@@ -52,14 +52,14 @@ response = requests.post(
     json=json_data,
 )
 pr = json.loads(response.text)["streamingData"]["hlsManifestUrl"]
-#os.system(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/fkhh-v2kz-fpgj-be4h-8fv2")
+os.system(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
 #os.system(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:0]split[main][back];[back]scale=1920:1080[scale];[scale]drawbox=x=0:y=0:w=1920:h=1080:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1920,-1)':'if(gt(a,16/9),-1,1080)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/z7mc-58xj-mzvc-mqyp-86vj")
 
 
 #print(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:0]split[main][back];[back]scale=1280:720[scale];[scale]drawbox=x=0:y=0:w=1280:h=720:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1280,-1)':'if(gt(a,16/9),-1,720)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 #print(pr)
-os.system(f"ffmpeg -re -ss 05:58:48 -i \"{pr}\" -map 0:p:13 -vf transpose=1 -c:v libx264 -b:v 8000k -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
+#os.system(f"ffmpeg -re -ss 05:58:48 -i \"{pr}\" -map 0:p:13 -vf transpose=1 -c:v libx264 -b:v 8000k -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
 
 
 #os.system(f"ffmpeg -re -i \"{pr}\" -map 0:p:2 -vf scale=ih*4/3:ih,setsar=1 -c:a aac -g 30 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
