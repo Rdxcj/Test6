@@ -70,11 +70,13 @@ v = l[0]['url']
 a = l[-1]['url']
 #print(a)
 
-os.system(f"ffmpeg -re -i '{v}' -re -i '{a}' -filter_complex \"[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256\" -acodec copy -preset ultrafast -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
+#os.system(f"ffmpeg -re -i '{v}' -re -i '{a}' -filter_complex \"[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256\" -acodec copy -preset ultrafast -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
 
 
 #os.system(f"ffmpeg -re -i '{pr}' -map 0:p:5 -filter_complex \"[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256\" -acodec copy -preset ultrafast -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
-#os.system(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:0]split[main][back];[back]scale=1920:1080[scale];[scale]drawbox=x=0:y=0:w=1920:h=1080:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1920,-1)':'if(gt(a,16/9),-1,1080)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/z7mc-58xj-mzvc-mqyp-86vj")
+
+
+os.system(f"ffmpeg -re -i '{v}' -re -i '{a}' -filter_complex \"[0:0]split[main][back];[back]scale=1920:1080[scale];[scale]drawbox=x=0:y=0:w=1920:h=1080:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1920,-1)':'if(gt(a,16/9),-1,1080)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -acodec copy -preset ultrafast -f flv rtmp://a.rtmp.youtube.com/live2/zvmf-1yjp-jzek-01pw-b4js")
 
 
 #print(f"ffmpeg -re -i '{pr}' -map 0:p:2 -filter_complex \"[0:0]split[main][back];[back]scale=1280:720[scale];[scale]drawbox=x=0:y=0:w=1280:h=720:color=black:t=1000[draw];[main]scale='if(gt(a,16/9),1280,-1)':'if(gt(a,16/9),-1,720)'[proc];[draw][proc]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2\" -c:a aac -g 20 -b:a 384k -f flv rtmp://a.rtmp.youtube.com/live2/mrak-pqgz-91hz-9r9u-2twa")
